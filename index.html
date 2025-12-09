@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolos Sem Glúten - Sofia Martins</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Configuração de Cores e Estilos -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#FFF8F0',       // Creme fundo
+                            primary: '#D97706',  // Laranja queimado (botões)
+                            secondary: '#78350F', // Marrom café (texto forte)
+                            accent: '#84CC16',    // Verde (saúde/sucesso)
+                            light: '#FEF3C7'      // Amarelo claro (destaques)
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Fredoka', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.1)',
+                        'button': '0 4px 0px 0px #92400E', // Sombra sólida para efeito 3D no botão
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Animação suave de pulso para o botão */
+        @keyframes gentle-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        .btn-pulse {
+            animation: gentle-pulse 2s infinite;
+        }
+
+        /* Animação da Esteira de Depoimentos */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 8 - 2rem * 8)); } /* Ajuste baseado na largura do card + gap */
+        }
+        .animate-scroll {
+            animation: scroll 40s linear infinite;
+        }
+        /* Pausar animação ao passar o mouse ou tocar */
+        .animate-scroll:hover {
+            animation-play-state: paused;
+        }
+        
+        /* Estilo para detalhes/resumo (FAQ) */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: slideDown 0.3s ease-in-out;
+        }
+        
+        @keyframes slideDown {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-brand-bg text-gray-800 font-sans antialiased">
+
+    <!-- SEÇÃO 1 – HEADLINE + PROMESSA (Hero Section) -->
+    <header class="relative bg-brand-secondary text-white pb-12 pt-8 rounded-b-[2rem] overflow-hidden shadow-xl">
+        <!-- Imagem de fundo com overlay (DIVIDIDA EM DUAS) -->
+        <div class="absolute inset-0 z-0 opacity-20 flex">
+            <!-- Imagem Esquerda -->
+            <div class="w-1/2 h-full">
+                <img src="https://i.imgur.com/mxk7ZgP.png" alt="Bolo de chocolate" class="w-full h-full object-cover">
+            </div>
+            <!-- Imagem Direita -->
+            <div class="w-1/2 h-full">
+                <img src="https://i.imgur.com/dsZyatp.png" alt="Bolo de frutas" class="w-full h-full object-cover">
+            </div>
+        </div>
+
+        <div class="relative z-10 px-6 max-w-md mx-auto text-center">
+            
+            <!-- ÂNCORA DE PREÇO (NOVO) - Posicionado estrategicamente acima do preço atual -->
+            <div class="mb-1">
+                <span class="inline-block bg-white/90 text-red-600 px-2 py-0.5 rounded-md text-xs font-bold line-through decoration-red-600 shadow-sm transform -rotate-2">
+                    Preço Original R$59,00
+                </span>
+            </div>
+
+            <!-- Badge de Preço -->
+            <div class="inline-flex items-center gap-1 bg-brand-primary text-white text-sm font-bold px-3 py-1 rounded-full mb-4 shadow-lg animate-bounce">
+                <i data-lucide="flame" class="w-4 h-4"></i> APENAS R$10
+            </div>
+
+            <h1 class="font-display text-4xl md:text-5xl font-bold leading-tight mb-4 text-white drop-shadow-md">
+                Receitas de Bolo Para Comer <span class="text-brand-primary">Sem Culpa</span>
+            </h1>
+
+            <p class="text-lg text-gray-200 mb-6 font-light leading-relaxed">
+                Descubra receitas saudáveis, deliciosas e simples para quem ama bolo, mas não quer abrir mão da saúde.
+            </p>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8 text-xs font-semibold text-brand-secondary">
+                <span class="bg-white px-3 py-1 rounded-lg">Sem Glúten</span>
+                <span class="bg-white px-3 py-1 rounded-lg">Sem Leite</span>
+                <span class="bg-white px-3 py-1 rounded-lg">Sem Açúcar</span>
+            </div>
+
+            <!-- CTA PRINCIPAL -->
+            <a href="https://pay.cakto.com.br/rvekehi_675541" class="btn-pulse block w-full bg-brand-primary hover:bg-orange-600 text-white font-bold text-xl py-4 rounded-xl shadow-button transition-transform active:translate-y-1 active:shadow-none mb-2">
+                BAIXAR MINHA CÓPIA
+            </a>
+            <p class="text-xs text-gray-400">Acesso imediato e vitalício</p>
+        </div>
+    </header>
+
+    <!-- SEÇÃO 2 – O QUE TORNA ESSAS RECEITAS DIFERENTES -->
+    <section class="py-12 px-6 max-w-md mx-auto">
+        <h2 class="font-display text-2xl font-bold text-brand-secondary text-center mb-8">
+            Por que essas receitas são <span class="text-brand-primary">diferentes?</span>
+        </h2>
+
+        <div class="bg-white p-6 rounded-2xl shadow-soft mb-8 border border-brand-light">
+            <ul class="space-y-4">
+                <li class="flex items-start gap-3">
+                    <div class="bg-brand-light p-2 rounded-full text-brand-secondary"><i data-lucide="egg" class="w-5 h-5"></i></div>
+                    <div>
+                        <span class="font-bold block text-brand-secondary">Ovos:</span>
+                        <span class="text-sm text-gray-600">Com ou sem, você decide.</span>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <div class="bg-brand-light p-2 rounded-full text-brand-secondary"><i data-lucide="candy-off" class="w-5 h-5"></i></div>
+                    <div>
+                        <span class="font-bold block text-brand-secondary">Açúcar:</span>
+                        <span class="text-sm text-gray-600">Todas as receitas trazem a variação sem açúcar.</span>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <div class="bg-brand-light p-2 rounded-full text-brand-secondary"><i data-lucide="milk-off" class="w-5 h-5"></i></div>
+                    <div>
+                        <span class="font-bold block text-brand-secondary">Leite:</span>
+                        <span class="text-sm text-gray-600">Sem Leite</span>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <div class="bg-brand-light p-2 rounded-full text-brand-secondary"><i data-lucide="wheat-off" class="w-5 h-5"></i></div>
+                    <div>
+                        <span class="font-bold block text-brand-secondary">100% Seguro:</span>
+                        <span class="text-sm text-gray-600">Sem conservantes e sem glúten.</span>
+                    </div>
+                </li>
+                <li class="flex items-start gap-3">
+                    <div class="bg-brand-light p-2 rounded-full text-brand-secondary"><i data-lucide="shopping-basket" class="w-5 h-5"></i></div>
+                    <div>
+                        <span class="font-bold block text-brand-secondary">Acessível:</span>
+                        <span class="text-sm text-gray-600">Ingredientes simples que você encontra fácil no mercado.</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-brand-secondary text-white p-6 rounded-2xl text-center shadow-lg relative overflow-hidden mb-8">
+            <div class="absolute -right-6 -top-6 bg-white/10 w-24 h-24 rounded-full"></div>
+            <h3 class="text-xl font-bold mb-2">🎁 O que você recebe?</h3>
+            <p class="text-lg">Você receberá <strong>12 receitas inéditas</strong>, com instruções claras e fáceis de seguir.</p>
+        </div>
+
+        <!-- BOTÃO AGORA ABAIXO DO BLOCO -->
+        <a href="https://pay.cakto.com.br/rvekehi_675541" class="btn-pulse block w-full bg-brand-primary hover:bg-orange-600 text-white font-bold text-xl py-4 rounded-xl shadow-button transition-transform active:translate-y-1 active:shadow-none mb-8 text-center">
+            BAIXAR MINHA CÓPIA
+        </a>
+    </section>
+
+    <!-- SEÇÃO 3 – APRESENTAÇÃO DO PRODUTO -->
+    <section class="bg-white py-12">
+        <div class="px-6 max-w-md mx-auto text-center">
+            <h2 class="font-display text-2xl font-bold text-gray-800 mb-2">Apresento o Livro Digital</h2>
+            <h3 class="font-display text-3xl font-bold text-brand-primary mb-6">Bolos Sem Glúten</h3>
+
+            <!-- Capa do Livro (Imagem Real) -->
+            <div class="relative w-64 mx-auto mb-8 transform hover:scale-105 transition-transform duration-300">
+                <img src="https://i.imgur.com/WVu9Du9.png" alt="Capa do Livro Bolos Sem Glúten" class="w-full h-auto rounded-xl shadow-2xl">
+            </div>
+
+            <p class="text-gray-600 mb-2">Criado por <strong>Sofia Martins</strong></p>
+            
+            <!-- INSTAGRAM REMOVIDO TEMPORARIAMENTE
+            <p class="text-sm text-gray-500 bg-gray-50 py-2 px-4 rounded-full inline-block">
+                <i data-lucide="instagram" class="w-3 h-3 inline mr-1"></i> @seu.insta.aqui
+            </p>
+            -->
+
+            <p class="text-sm text-gray-500 mt-2">Onde milhares de pessoas acompanham suas receitas e dicas.</p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4 – PROVA SOCIAL -->
+    <section class="py-12 overflow-hidden">
+        <h2 class="font-display text-2xl font-bold text-center text-brand-secondary mb-2 px-6">Quem fez, <span class="underline decoration-brand-primary">amou!</span></h2>
+        <p class="text-center text-xs text-gray-500 mb-8 px-6">
+            <i data-lucide="message-circle" class="w-3 h-3 inline mr-1"></i> 
+            Deslize para ver o que estão falando
+        </p>
+
+        <!-- Container da Esteira -->
+        <div class="relative w-full">
+            <!-- Gradientes laterais para suavizar a entrada/saída (Fade effect) -->
+            <div class="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-brand-bg to-transparent z-10"></div>
+            <div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-brand-bg to-transparent z-10"></div>
+
+            <!-- Wrapper da Animação (Duplicado para efeito infinito) -->
+            <div class="flex gap-4 w-max animate-scroll px-4">
+                
+                <!-- GRUPO 1 DE DEPOIMENTOS -->
+                <!-- Card 1 -->
+                <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Maria Clara</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Fiz o de chocolate hoje e meu filho nem percebeu que era sem glúten. Aprovadíssimo!"</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Juliana Paiva</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"A textura fica incrível. Finalmente um bolo saudável que não parece borracha."</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Roberto Souza</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Sou diabético e o bolo de maçã salvou meu café da tarde. Muito bom mesmo."</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Fernanda Lima</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"O eBook é lindo e super fácil de entender. Já fiz 3 receitas e todas deram certo."</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Patrícia Gomes</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Vale cada centavo. Só a receita do bolo de cenoura já pagou o livro."</p>
+                </div>
+
+                 <!-- Card 6 -->
+                 <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Carla Dias</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Comprei achando que seria difícil achar os ingredientes, mas tem tudo no mercado aqui perto."</p>
+                </div>
+
+                 <!-- Card 7 -->
+                 <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Lucas Mendes</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Minha esposa adorou! Fizemos juntos no domingo e ficou sensacional."</p>
+                </div>
+
+                 <!-- Card 8 -->
+                 <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Beatriz Oliveira</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"A entrega foi imediata mesmo, paguei no pix e já chegou o email."</p>
+                </div>
+
+
+                <!-- REPETIÇÃO DO GRUPO (Para dar o efeito de loop infinito) -->
+                <!-- Card 1 Repetido -->
+                <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Maria Clara</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Fiz o de chocolate hoje e meu filho nem percebeu que era sem glúten. Aprovadíssimo!"</p>
+                </div>
+                <!-- Card 2 Repetido -->
+                <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Juliana Paiva</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"A textura fica incrível. Finalmente um bolo saudável que não parece borracha."</p>
+                </div>
+                 <!-- Card 3 Repetido -->
+                 <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Roberto Souza</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Sou diabético e o bolo de maçã salvou meu café da tarde. Muito bom mesmo."</p>
+                </div>
+                <!-- Card 4 Repetido -->
+                <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Fernanda Lima</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"O eBook é lindo e super fácil de entender. Já fiz 3 receitas e todas deram certo."</p>
+                </div>
+                 <!-- Card 5 Repetido -->
+                 <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Patrícia Gomes</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Vale cada centavo. Só a receita do bolo de cenoura já pagou o livro."</p>
+                </div>
+                 <!-- Card 6 Repetido -->
+                 <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Carla Dias</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Comprei achando que seria difícil achar os ingredientes, mas tem tudo no mercado aqui perto."</p>
+                </div>
+                 <!-- Card 7 Repetido -->
+                 <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Lucas Mendes</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"Minha esposa adorou! Fizemos juntos no domingo e ficou sensacional."</p>
+                </div>
+                 <!-- Card 8 Repetido -->
+                 <div class="w-[280px] bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex-shrink-0">
+                    <div class="mb-3">
+                        <div class="flex items-center justify-between">
+                            <p class="font-bold text-sm text-gray-900 leading-none">Beatriz Oliveira</p>
+                            <div class="flex text-yellow-400 text-xs">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm italic">"A entrega foi imediata mesmo, paguei no pix e já chegou o email."</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5 – COMO VOCÊ RECEBE -->
+    <section class="bg-brand-secondary text-white py-12">
+        <div class="px-6 max-w-md mx-auto">
+            <h2 class="font-display text-2xl font-bold text-center mb-8">Entrega Imediata 📥</h2>
+            
+            <div class="relative pl-8 space-y-8 before:content-[''] before:absolute before:left-3 before:top-2 before:bottom-2 before:w-0.5 before:bg-white/30">
+                <div class="relative">
+                    <div class="absolute -left-[2.35rem] bg-brand-primary w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg">1</div>
+                    <h3 class="font-bold text-lg">Pagamento Confirmado</h3>
+                    <p class="text-white/80 text-sm">Pix ou Cartão liberam na hora.</p>
+                </div>
+                
+                <div class="relative">
+                    <div class="absolute -left-[2.35rem] bg-brand-primary w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg">2</div>
+                    <h3 class="font-bold text-lg">Envio Automático</h3>
+                    <p class="text-white/80 text-sm">O acesso chega no seu e-mail e WhatsApp.</p>
+                </div>
+
+                <div class="relative">
+                    <div class="absolute -left-[2.35rem] bg-brand-accent w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shadow-lg"><i data-lucide="check" class="w-4 h-4"></i></div>
+                    <h3 class="font-bold text-lg">Zero Espera</h3>
+                    <p class="text-white/80 text-sm">Baixe e comece a cozinhar agora mesmo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 6 – PERGUNTAS FREQUENTES -->
+    <section class="py-12 px-6 max-w-md mx-auto">
+        <h2 class="font-display text-2xl font-bold text-center text-brand-secondary mb-8">Dúvidas Frequentes</h2>
+
+        <div class="space-y-3">
+            <details class="group bg-white rounded-lg shadow-sm">
+                <summary class="flex justify-between items-center font-bold cursor-pointer p-4 text-brand-secondary">
+                    O bolo fica gostoso e fofinho?
+                    <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5"></i></span>
+                </summary>
+                <div class="text-gray-600 px-4 pb-4 text-sm leading-relaxed border-t border-gray-100 mt-2 pt-2">
+                    Sim! A textura fica igual bolo tradicional. Fofo, úmido e saboroso. Ninguém percebe que não tem glúten.
+                </div>
+            </details>
+
+            <details class="group bg-white rounded-lg shadow-sm">
+                <summary class="flex justify-between items-center font-bold cursor-pointer p-4 text-brand-secondary">
+                    Os ingredientes são caros?
+                    <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5"></i></span>
+                </summary>
+                <div class="text-gray-600 px-4 pb-4 text-sm leading-relaxed border-t border-gray-100 mt-2 pt-2">
+                    Não. Tudo pode ser encontrado facilmente e sem gastar muito. Focamos em acessibilidade.
+                </div>
+            </details>
+
+            <details class="group bg-white rounded-lg shadow-sm">
+                <summary class="flex justify-between items-center font-bold cursor-pointer p-4 text-brand-secondary">
+                    Preciso ter experiência?
+                    <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5"></i></span>
+                </summary>
+                <div class="text-gray-600 px-4 pb-4 text-sm leading-relaxed border-t border-gray-100 mt-2 pt-2">
+                    Não. As receitas são simples e qualquer pessoa consegue fazer seguindo o passo a passo.
+                </div>
+            </details>
+            
+            <details class="group bg-white rounded-lg shadow-sm">
+                <summary class="flex justify-between items-center font-bold cursor-pointer p-4 text-brand-secondary">
+                    Eu vou receber na hora?
+                    <span class="transition group-open:rotate-180"><i data-lucide="chevron-down" class="w-5 h-5"></i></span>
+                </summary>
+                <div class="text-gray-600 px-4 pb-4 text-sm leading-relaxed border-t border-gray-100 mt-2 pt-2">
+                    Sim! O envio é 100% automático para seu e-mail e WhatsApp logo após a confirmação.
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 7 – GARANTIA -->
+    <section class="bg-green-50 py-8 px-6 border-y border-green-100">
+        <div class="max-w-md mx-auto text-center">
+            <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm text-brand-accent">
+                <i data-lucide="shield-check" class="w-8 h-8"></i>
+            </div>
+            <h3 class="font-bold text-xl text-brand-secondary mb-2">Satisfação Garantida</h3>
+            <p class="text-sm text-gray-600 mb-4">
+                Teste sem medo. Você tem <strong>7 dias</strong> para pedir reembolso total caso não goste do material.
+            </p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 8 – SOBRE A AUTORA -->
+    <section class="py-12 px-6 max-w-md mx-auto text-center">
+        <div class="w-24 h-24 bg-gray-300 rounded-full mx-auto mb-4 overflow-hidden border-4 border-white shadow-lg">
+            <!-- Placeholder para foto da autora -->
+            <img src="https://i.imgur.com/vyxMn12.png" alt="Sofia Martins" class="w-full h-full object-cover">
+        </div>
+        <h2 class="font-display text-xl font-bold text-brand-secondary mb-1">Sofia Martins</h2>
+        <p class="text-xs text-brand-primary uppercase font-bold tracking-widest mb-4">Confeiteira & Mãe</p>
+        
+        <div class="text-sm text-gray-600 leading-relaxed italic space-y-3 bg-white p-6 rounded-2xl shadow-soft">
+            <p>"Sempre acreditei que a cozinha é o coração da casa, mas achei que tinha perdido isso quando descobri minha intolerância."</p>
+            <p>"Decidi não aceitar uma vida sem sabor. Foram meses de testes até resgatar aquela textura de bolo de vó que a gente tanto ama."</p>
+            <p class="font-semibold text-brand-secondary">Hoje, minha missão é ajudar você a trazer o prazer de comer bem de volta para sua mesa, sem culpa.</p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 9 – FECHAMENTO + CTA FINAL -->
+    <footer class="bg-brand-secondary text-white py-12 rounded-t-[2rem] shadow-[0_-10px_40px_rgba(0,0,0,0.2)]">
+        <div class="px-6 max-w-md mx-auto text-center">
+            <h2 class="font-display text-2xl font-bold mb-4 leading-tight">
+                Desvende os Segredos dos <br>
+                <span class="text-brand-primary">Bolos Sem Glúten</span> Perfeitos
+            </h2>
+            <p class="text-gray-300 mb-8 text-sm">E prepare sua primeira receita ainda hoje!</p>
+            
+            <a href="https://pay.cakto.com.br/rvekehi_675541" class="btn-pulse block w-full bg-brand-primary hover:bg-orange-600 text-white font-bold text-lg py-4 rounded-xl shadow-button transition-transform active:translate-y-1 active:shadow-none mb-6">
+                BAIXAR MINHA CÓPIA
+                <span class="block text-xs font-normal opacity-90 mt-1">Acesso Imediato • Apenas R$10</span>
+            </a>
+            
+            <div class="flex justify-center items-center gap-4 text-gray-400 opacity-60">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+                <span class="text-xs">Pagamento 100% Seguro</span>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-white/10 text-xs text-gray-500">
+                &copy; 2024 Sofia Martins. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- NOTIFICAÇÃO DE VENDAS (POPUP VERDE) -->
+    <div id="sales-notification" class="fixed bottom-4 left-4 right-4 md:right-auto md:w-auto z-50 transform translate-y-32 opacity-0 transition-all duration-500">
+        <div class="bg-green-600 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-green-400/30 backdrop-blur-sm bg-opacity-95 max-w-sm mx-auto">
+            <div class="bg-white/20 p-2 rounded-full shrink-0">
+                <i data-lucide="shopping-bag" class="w-5 h-5 text-white"></i>
+            </div>
+            <div>
+                <p class="text-xs font-medium text-green-100 uppercase tracking-wide">Acabou de comprar</p>
+                <p class="text-sm font-bold leading-tight" id="buyer-info">Carregando...</p>
+            </div>
+            <button onclick="closeNotification()" class="ml-auto text-green-200 hover:text-white p-1">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Script para renderizar ícones e Lógica da Notificação -->
+    <script>
+        lucide.createIcons();
+
+        // LÓGICA DA NOTIFICAÇÃO DE VENDAS
+        const buyers = [
+            { name: 'Ana S.', loc: 'São Paulo, SP' },
+            { name: 'Mariana C.', loc: 'Rio de Janeiro, RJ' },
+            { name: 'Fernanda L.', loc: 'Curitiba, PR' },
+            { name: 'Patrícia M.', loc: 'Belo Horizonte, MG' },
+            { name: 'Camila R.', loc: 'Salvador, BA' },
+            { name: 'Beatriz O.', loc: 'Porto Alegre, RS' },
+            { name: 'Juliana P.', loc: 'Recife, PE' },
+            { name: 'Larissa T.', loc: 'Brasília, DF' },
+            { name: 'Carla V.', loc: 'Fortaleza, CE' },
+            { name: 'Roberta N.', loc: 'Goiânia, GO' },
+            { name: 'Amanda S.', loc: 'Campinas, SP' },
+            { name: 'Bruna K.', loc: 'Florianópolis, SC' }
+        ];
+
+        const notification = document.getElementById('sales-notification');
+        const buyerInfo = document.getElementById('buyer-info');
+
+        function showNotification() {
+            // Escolhe comprador aleatório
+            const randomBuyer = buyers[Math.floor(Math.random() * buyers.length)];
+            
+            // Atualiza texto
+            buyerInfo.textContent = `${randomBuyer.name} de ${randomBuyer.loc}`;
+            
+            // Mostra (remove classes de "escondido")
+            notification.classList.remove('translate-y-32', 'opacity-0');
+            
+            // Re-renderiza ícones para garantir (embora não mude a estrutura)
+            lucide.createIcons();
+
+            // Esconde após 5 segundos
+            setTimeout(() => {
+                hideNotification();
+            }, 5000);
+        }
+
+        function hideNotification() {
+            notification.classList.add('translate-y-32', 'opacity-0');
+        }
+        
+        function closeNotification() {
+            hideNotification();
+        }
+
+        // Inicia o ciclo
+        // Primeiro aparecimento após 4 segundos
+        setTimeout(() => {
+            showNotification();
+            
+            // Repete a cada 15 segundos
+            setInterval(() => {
+                showNotification();
+            }, 15000); 
+        }, 4000);
+    </script>
+</body>
+</html>
